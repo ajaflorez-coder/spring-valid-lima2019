@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+		<h1>Lima 2019 </h1>
+
+		<div class="card border-success text-center ">
+			<div class="card-header border-success">Deportistas</div>
+			<div class="card-body">
+			
+				<div th:if="${alertClass}" th:text="${message}" th:class="${'alert alert-' + alertClass}"/>
+
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead class="bg-primary text-white">
+							<tr>
+								<th scope="col">Id</th>
+								<th scope="col">Num. Documento</th>
+								<th scope="col">Apellidos</th>
+								<th scope="col">Nombres</th>
+								<th scope="col">Pais</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="deportista:${deportistas}">
+								<th scope="row" th:text="${deportista.id}"></th>
+								<td class="text-left" th:text="${deportista.numDocumento}"></td>
+								<td class="text-left" th:text="${deportista.apellidos}"></td>
+								<td class="text-left" th:text="${deportista.nombres}"></td>
+								<td class="text-left" th:text="${deportista.pais.nombre}"></td>
+								
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+			<div class="card-footer text-muted border-success">
+				<a th:href="@{/deportistas/new/}"
+					class="btn btn-success"> <i class="fas fa-file"></i> New Deportista
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
+
+
+
+

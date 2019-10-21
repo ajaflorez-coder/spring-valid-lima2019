@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+		<h1>Lima 2019 </h1>
+
+		<div class="card border-success text-center ">
+			<div class="card-header border-success">Paises</div>
+			<div class="card-body">
+			
+				<div th:if="${alertClass}" th:text="${message}" th:class="${'alert alert-' + alertClass}"/>
+
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead class="bg-primary text-white">
+							<tr>
+								<th scope="col">Id</th>
+								<th scope="col">Nombre</th>
+								<th scope="col"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="pais : ${paises}">
+								<th scope="row" th:text="${pais.id}"></th>
+								<td class="text-left" th:text="${pais.nombre}"></td>
+								<td>
+									<a th:href="@{ '/paises/info/' + ${pais.id} }" class="btn btn-info"> 
+										<i class="fas fa-info"></i> 
+									</a>
+									<a th:href="@{ '/paises/edit/' + ${pais.id} }" class="btn btn-warning"> 
+										<i class="fas fa-edit"></i> 
+									</a>
+									<a th:href="@{ '/paises/del/' + ${pais.id} }" class="btn btn-danger"> 
+										<i class="fas fa-trash-alt"></i> 
+									</a>							
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+			<div class="card-footer text-muted border-success">
+				<a th:href="@{/paises/new/}"
+					class="btn btn-primary"> <i class="fas fa-file"></i> New Pais
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
+
+
+
+

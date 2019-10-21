@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+		<h1>Lima 2019</h1>
+
+		<div class="card border-success text-center ">
+			<div class="card-header border-success">Medallas</div>
+			<div class="card-body">
+			
+				<div th:if="${alertClass}" th:text="${message}" th:class="${'alert alert-' + alertClass}"/>
+
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead class="bg-primary text-white">
+							<tr>
+								<th scope="col">Id</th>
+								<th scope="col">Pais</th>
+								<th scope="col">Nivel</th>
+								<th scope="col">Deportista</th>
+								<th scope="col">Disciplina</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="medalla : ${medallas}">
+								<th scope="row" th:text="${medalla.id}"></th>
+								<td class="text-left" th:text="${medalla.deportista.pais.nombre}"></td>
+								<td class="text-left" th:text="${medalla.nivel}"></td>
+								<td class="text-left" th:text="${medalla.deportista.apellidos + ' ' + medalla.deportista.nombres}"></td>
+								<td class="text-left" th:text="${medalla.disciplina}"></td>
+							
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+			<div class="card-footer text-muted border-success">
+				<a th:href="@{/medallas/new/}"
+					class="btn btn-success"> <i class="fas fa-file"></i> Nueva Medalla
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
+
+
+
+
